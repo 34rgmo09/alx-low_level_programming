@@ -1,2 +1,3 @@
-all about bit wise operators such an intresting topic
+### 0X14 BIT MANIPULATION IN C
 
+. Bitwise and, NOT, Exclusive OR, left shift, right shift

@@ -1,31 +1,37 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * wildcmp - Compare strings
- * @s1: pointer to string params
- * @s2: pointer to string params
- * Return: 0
- */
-
+ * wildcmp - compares 2 strings
+ * @s1: first string
+ * @s2: second string
+ * Return: 1 if string are same and 0 otherwise.
+ **/
 int wildcmp(char *s1, char *s2)
 {
-	if (*s1 == '\0')
+	char delim = '\0';
+	int a, b, c;
+	char *S1 = s1 + 1, *S2 = s2 + 1;
+
+	if (*s1 == delim && *s2 == delim)
+		return (1);
+
+	if (*s1 == delim && *s2 == '*')
 	{
-		if (*s2 != '\0' && *s2 == '*')
-		{
-			return (wildcmp(s1, s2 + 1));
-		}
-		return (*s2 == '\0');
+		b = wildcmp(s1, S2);
+		return (b);
+	}
+
+	if (*s1 == *s2)
+	{
+		a = wildcmp(S1, S2);
+		return (a);
 	}
 
 	if (*s2 == '*')
 	{
-		return (wildcmp(s1 + 1, s2) || wildcmp(s1, s2 + 1));
+		c = (wildcmp(s1, S2)) || (wildcmp(S1, s2));
+		return (c);
 	}
-	else if (*s1 == *s2)
-	{
-		return (wildcmp(s1 + 1, s2 + 1));
-	}
+
 	return (0);
 }
-
